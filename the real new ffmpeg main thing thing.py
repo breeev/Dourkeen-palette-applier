@@ -1,4 +1,5 @@
 from os import system
+from time import sleep
 from PIL import Image
 from tkinter.simpledialog import askinteger
 from tkinter.filedialog import askopenfilename,asksaveasfilename
@@ -35,3 +36,4 @@ p=Image.new('RGB',(len(palette),1))
 p.putdata(palette)
 p.resize((16,16),Image.Resampling.BOX).save('palette.png')
 system(f'ffmpeg -i "{vidin}" -i palette.png -lavfi paletteuse=dither={dithermodes[v.get()]}{("bayer_scale="+str(bayer))*bayer} "{vidout}"')
+sleep(5)
